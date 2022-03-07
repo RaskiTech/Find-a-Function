@@ -324,7 +324,7 @@ class CoordinatePlane extends Component {
             // Draw error
             ctx.fillStyle = functionColor[7];/*Gray*/
             ctx.font = "15px Arial";
-            ctx.fillText("Error " + funcObject[3], xPos, yPos+15);
+            ctx.fillText("Error " + RoundToDecimals(funcObject[3], Math.pow(10, 10)), xPos, yPos+15);
 
             // Draw formula
             ctx.font = "25px Arial";
@@ -418,13 +418,15 @@ function GetBestFuncs(points) {
     return functionsToShow;
 }
 
+function RoundToDecimals(number, tenthPower) { return Math.round((number + Number.EPSILON) * tenthPower) / tenthPower; }
+
 function GetStringFormula(i, params) {
     const tenthPower = Math.pow(10, decimals);
-    let RoundCorrectDecimals = (number) => { return Math.round((number + Number.EPSILON) * tenthPower) / tenthPower; }
+    let RoundCorrectDecimals = (number) => RoundToDecimals(number, tenthPower);
 
     let str = functions[i][3]
-    
-    let nextParamIndex = 0;
+
+    let nextParamIndex = params.length - 1;
 
     for (let i = 0; i < str.length; i++) {
         if (str[i] !== '_') 
@@ -447,7 +449,7 @@ function GetStringFormula(i, params) {
         else {
             str = str.slice(0, i) + RoundCorrectDecimals(params[nextParamIndex]) + str.slice(i+1);
         }
-        nextParamIndex++;
+        nextParamIndex--;
     }
 
     return str;

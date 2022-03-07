@@ -1,4 +1,4 @@
-See the website at https://raskitech.github.io/find-a-function/
+See the website at https://raskitech.github.io/Find-a-Function/
 
 # Find a Function
 

@@ -1,0 +1,17 @@
+.leftSide {
+	padding-left: 15px;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.rightSide {
+	padding-right: 15px;
+}
+
+body {
+	overflow: hidden; /* Hide scrollbars */
+}

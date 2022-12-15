@@ -31,10 +31,18 @@ const leastSquaresTreshold = 1;
 const decimals = 5;
 
 /* 
-f[0] = map version, f[1] = normal version, f[2] = method to find best-fit, f[3] = string formula (params with _)
-f[4] = least squares multiplier, f[5] = smallest sample, f[6] = biggest sample, f[7] = min amount of samples for this
+f[0] = function as a map, 
+f[1] = function - normal version, 
+f[2] = method to find best-fit, 
+f[3] = string formula (params with _)
+f[4] = least squares multiplier
+f[5] = smallest sample (use if function is not defined everywhere)
+f[6] = biggest sample (use if function is not defined everywhere)
+f[7] = min amount of data points required
 
-Least Squares multiplier, since for example if both Order 5 polynomial 
+Least Squares multiplier:
+If many curves get the same evaluation, the program will pick the one that has
+smaller least square multiplier. For example if both Order 5 polynomial 
 and a line get the same evaluation, a line is better
 
 */
@@ -538,7 +546,9 @@ function calculateBestPolynomial(coefficentAmount, x, y) {
 }
 
 function useNonLinearRegression(funcIndex, iteration, x, y) {
-    let initialValues = Array(10/*The most amount of numbers a funtion input can have*/).fill(1);
+    let variableCount = functions[funcIndex][3].split('_').length - 1;
+    let initialValues = Array(variableCount).fill(1);
+
     return nonLinearRegression(functions[funcIndex][0], initialValues, x, y, {maxIter: iteration,display:false});
 }
 

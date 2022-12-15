@@ -1,0 +1,15 @@
+
+.logoText {
+    color:black;
+    margin-right: 10px;
+    vertical-align: middle;
+    font-weight: 600;
+    font-size: 18px;
+
+    width:fit-content;
+}
+
+.numberField {
+    width: 40%;
+    vertical-align: middle;
+}

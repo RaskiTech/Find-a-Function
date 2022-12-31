@@ -7,6 +7,9 @@ function App() {
   const [points, setPoints] = useState([]);
   const [clearBoardFlag, setClearBoardFlag] = useState(false);
 
+  // -1 is uses the best fit line, an index uses the function at that index
+  const [functionIndex, setFunctionIndex] = useState(-1);
+
   const [findingBestLine, setFindingBestLine] = useState(false);
   const [findingDone, setFindingDone] = useState(true);
 
@@ -28,8 +31,10 @@ function App() {
 
   return (
     <div>
-      <TopBar addPoint={addPoint} clear={clear} findingDone={findingDone} startFunctionFind={startFunctionFind}/>
-      <CoordinatePlane clearBoardFlag={clearBoardFlag} points={points} findingBestLine={findingBestLine} stopFunctionFind={stopFunctionFind}/>
+      <TopBar addPoint={addPoint} clear={clear} findingDone={findingDone} 
+        startFunctionFind={startFunctionFind} 
+        functionIndex={functionIndex} setFunctionIndex={setFunctionIndex}/>
+      <CoordinatePlane clearBoardFlag={clearBoardFlag} points={points} findingBestLine={findingBestLine} functionIndex={functionIndex} stopFunctionFind={stopFunctionFind}/>
     </div>
   );
 }

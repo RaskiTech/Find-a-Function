@@ -18,6 +18,7 @@ const ExtendedCanvas = (draw, init, zoom) => {
   }
 
   useEffect(() => {
+
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
     canvas.width = window.innerWidth;
@@ -35,7 +36,7 @@ const ExtendedCanvas = (draw, init, zoom) => {
     window.addEventListener("wheel", callZoom, { passive: false });
     return () => {window.removeEventListener("resize", updateWidthAndHeight);
                   window.removeEventListener("wheel", callZoom, { passive: false });}
-  })
+  }, [firstUpdate, callZoom, draw, init])
   
   return canvasRef;
 }

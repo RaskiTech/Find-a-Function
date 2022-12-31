@@ -1,5 +1,6 @@
 .leftSide {
-	padding-left: 15px;
+	display: flex;
+	justify-content: left;
 }
 
 .center {
@@ -10,6 +11,8 @@
 
 .rightSide {
 	padding-right: 15px;
+	display: flex;
+	justify-content: right;
 }
 
 body {

@@ -1,0 +1,63 @@
+/*
+Flat UI Palette v1
+    white: '#ffffff',
+    gray: '#ecf0f1',
+    grayDark: '#bdc3c7',
+    black: '#34495e',
+    blackDark: '#2c3e50',
+    yellow: '#f1c40f',
+    yellowDark: '#f39c12',
+    orange: '#e67e22',
+    orangeDark: '#d35400',
+    turquoise: '#1abc9c',
+    turquoiseDark: '#16a085',
+    blue: '#3498db',
+    purple: '#9b59b6',
+*/
+
+:root {
+    --application-main-color:#1abc9c;
+    --application-main-color-dark:#16a085;
+    --application-secondary-color:#f1c40f;
+    --application-secondary-color-dark:#f39c12;
+}
+
+.horPadding {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.moveDownLittle {
+    transform: translateY(15%);
+}
+
+.btnStyle {
+    border-color:     var(--application-secondary-color-dark) !important;
+    background-color: var(--application-secondary-color-dark) !important;
+    color: #fff !important;
+}
+
+.topBar {
+    background: var(--application-main-color);
+}
+
+.logoText {
+    color:black;
+    vertical-align: middle;
+    font-weight: 600;
+    font-size: 18px;
+
+    width:fit-content;
+
+    margin-top:auto;
+    margin-bottom:auto;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.numberField {
+    width: 40%;
+    vertical-align: middle;
+
+    margin-right: 10px;
+}

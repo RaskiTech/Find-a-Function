@@ -54,9 +54,7 @@ function TopBar({ addPoint, clear, findingDone, startFunctionFind, functionIndex
             .replace(/(?<=.)[-]/g, '')
     }
 
-    const findBestText = "Best fit";
-    if (functionIndex === undefined)
-        setFunctionIndex(findBestText);
+    const BestFitText = "Best fit";
 
     return (
         <Navbar className="topBar" expand="lg" sticky="top">
@@ -69,9 +67,9 @@ function TopBar({ addPoint, clear, findingDone, startFunctionFind, functionIndex
             <Col className="center">
                 <Col>
                     <Nav style={{"justifyContent": "right"}}>
-                        <NavDropdown className="dropdownStyle horPadding" title={functionIndex >= 0 ? FunctionData[functionIndex][3] : findBestText}
-                            onSelect={(index, event) => setFunctionIndex(index)}>
-                            <Dropdown.Item as="button" eventKey={-1} key={-1}>{findBestText}</Dropdown.Item>
+                        <NavDropdown className="dropdownStyle horPadding" title={functionIndex >= 0 ? FunctionData[functionIndex][3] : BestFitText}
+                            onSelect={(index, event) => setFunctionIndex(Number(index))}>
+                            <Dropdown.Item as="button" eventKey={-1} key={-1}>{BestFitText}</Dropdown.Item>
                             {
                                 FunctionData.map((func, index) => ( <Dropdown.Item as="button" eventKey={index} key={index}>{func[3]}</Dropdown.Item>))
                             }

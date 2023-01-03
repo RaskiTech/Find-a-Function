@@ -61,3 +61,24 @@ Flat UI Palette v1
 
     margin-right: 10px;
 }
+
+.errorAlert {
+    width: 40%;
+    margin: auto;
+    margin-top: 10px;
+
+    z-index: 100;
+
+    animation: brieflyComeDown 2.0s;
+    animation-direction: alternate;
+
+    transition-duration: 2s;
+}
+
+.errorAlert.alertDown {
+    transform: translateY(0%);
+}
+
+.errorAlert.alertUp {
+    transform: translateY(-100px);
+}

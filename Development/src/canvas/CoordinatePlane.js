@@ -79,10 +79,21 @@ class CoordinatePlane extends Component {
         {
             this.renderingFunctionObjects = []
 
-            if (this.props.functionIndex == -1)
+            if (this.props.functionIndex === -1)
                 this.renderingFunctionObjects = GetBestFuncs(this.props.points);
             else
                 this.renderingFunctionObjects = GetBestFunctionOfType(this.props.points, this.props.functionIndex);
+
+            if (this.renderingFunctionObjects.length === 0)
+            {
+                let minPointAmount = this.props.functionIndex === -1 ? 
+                    1 : /* The least amount of points a any curve has, hardcoded to 1*/
+                    FunctionData[this.props.functionIndex][7];
+
+                let possiblePlural = minPointAmount == 1 ? " point." : " points.";
+
+                this.props.showAlertPopup("Make sure to have at least " + minPointAmount + possiblePlural);
+            }
 
             this.props.stopFunctionFind();
         }
@@ -114,7 +125,7 @@ class CoordinatePlane extends Component {
     zoom = (delta, mouseX, mouseY) => {
         const change = delta * this.scale * zoomSpeed;
         if ((this.scale > maxScale && change < 0) || (this.scale < minScale && change > 0)) {
-            console.log("Returning cause scale is", this.scale, "and delta is", change);
+            console.log("Returning because scale is", this.scale, "and delta is", change);
             return;
         }
 
@@ -351,7 +362,6 @@ function GetBestFuncs(points)
 }
 function GetBestFunctionOfType(points, functionIndex)
 {
-    // TODO: display error message to say too few points
     if (points.length < FunctionData[functionIndex][7])
         return [];
 
@@ -399,11 +409,11 @@ function GetStringFormula(i, params) {
         
         if (params[nextParamIndex] < 0) {
             // if there is a + before, switch it to -
-            if (i - 2 > 0 && str[i - 2] == '+') {
+            if (i - 2 > 0 && str[i - 2] === '+') {
                 str = str.slice(0, i-2) + '-' + str.slice(i-1);
                 str = str.slice(0, i) + RoundCorrectDecimals(Math.abs(params[nextParamIndex])) + str.slice(i+1);
             }
-            else if (i - 1 > 0 && str[i - 1] == '+') {
+            else if (i - 1 > 0 && str[i - 1] === '+') {
                 str[i - 1] = '-';
                 str = str.slice(0, i) + RoundCorrectDecimals(Math.abs(params[nextParamIndex])) + str.slice(i+1);
             }
